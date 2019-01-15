@@ -48,13 +48,13 @@ public class TransportController {
     public CalculateDistanceResponse calculatePathAndDistance() {
         nodes = new ArrayList<>();
         edges = new ArrayList<>();
-        // add Strings from db
+        // add planets from db
         List<Planet> planets = (List<Planet>) planetRepository.findAll();
         for (Planet planet : planets) {
             nodes.add(planet.getPlanetNode());
         }
         // add routes from db
-        List<Route> routes = (List<Route>) routeRepository.findAll();
+        List<Route> routes = routeRepository.findAll();
         for (Route route : routes) {
             addEdges(route);
         }
@@ -62,7 +62,6 @@ public class TransportController {
         // Lets check from location Loc_1 to Loc_10
         Graph graph = new Graph(nodes, edges);
         DijkstraAlgorithm dijkstra = new DijkstraAlgorithm(graph);
-        // dijkstra.execute(nodes.get(0));
         dijkstra.execute(origin);
         LinkedList<String> path = dijkstra.getOriginToDestinationPath(destination);
         Double distance = dijkstra.getShortestDistance(destination);

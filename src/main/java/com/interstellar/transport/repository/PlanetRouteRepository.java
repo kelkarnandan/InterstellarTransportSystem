@@ -11,4 +11,5 @@ import com.interstellar.transport.entity.Route;
  */
 @Transactional
 public interface PlanetRouteRepository extends JpaRepository<Route, Long> {
+
 }
